@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #065f46;
+  --color-light-green: #569281;
+  --color-gray-green: #475248;
+  --color-white-border: #dadfe3;
+  --color-green-white: #fafaf8;
+}
+
+@layer utilities {
+  .input-shadow {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .btn-shadow {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .glass-effect {
+    background: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.3); */
+  }
+}
+
+/* Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* بعض المتصفحات المبنية على Chromium */
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container {
+  display: none;
+}

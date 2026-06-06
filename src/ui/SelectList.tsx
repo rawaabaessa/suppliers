@@ -4,7 +4,7 @@ import Label from "./Label";
 import type { SelectOption } from "../types/SelectOption";
 
 interface SelectListProps extends Props<SelectOption, false> {
-  title: string;
+  title?: string;
 }
 
 const SelectList = ({ title, ...props }: SelectListProps) => {
@@ -16,7 +16,6 @@ const SelectList = ({ title, ...props }: SelectListProps) => {
         styles={{
           control: (base) => ({
             ...base,
-            minHeight: "48px",
             borderRadius: "12px",
             borderColor: "#dadfe3",
             boxShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",

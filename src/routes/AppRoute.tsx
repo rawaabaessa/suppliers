@@ -6,9 +6,10 @@ import DocumentUpload from "../pages/auth/suppliers/DocumentUpload";
 import AddressInfo from "../pages/auth/suppliers/AddressInfo";
 import BankDetails from "../pages/auth/suppliers/BankDetails";
 import SupplierRegistrationLayout from "../layouts/SupplierRegistrationLayout";
+import Home from "../pages/home";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <h1>Home</h1> },
+  { path: "/", element: <Home /> },
   {
     path: "/login",
     element: <Login />,

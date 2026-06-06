@@ -8,7 +8,7 @@ interface InputProps {
   isPassword?: boolean;
 }
 
-const Input = ({ label, placeholder, isPassword }: InputProps) => {
+const Input = ({ label, placeholder, isPassword, ...props }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [value, setValue] = useState("");
 
@@ -22,6 +22,7 @@ const Input = ({ label, placeholder, isPassword }: InputProps) => {
           placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          {...props}
         />
         {isPassword && (
           <button

@@ -14,14 +14,15 @@ const Button = ({
 }: ButtonProps) => {
   const variants = {
     filled: "bg-primary text-white hover:bg-light-green btn-shadow",
-    outline: "",
+    outline:
+      "border border-primary text-primary btn-shadow font-medium hover:bg-primary hover:text-white",
     social: "border-2 border-white-border input-shadow rounded-xl p-2",
   };
   return (
     <button
       type={type}
       onClick={onClick}
-      className={` px-4 py-3
+      className={` px-6 py-2
         rounded-full
         text-base
         transition-colors

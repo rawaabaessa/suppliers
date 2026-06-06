@@ -1,10 +1,6 @@
 import AuthSidePanelHeader from "./AuthSidePanelHeader";
 import Card from "../../ui/Card";
-
-interface Feature {
-  title: string;
-  description: string;
-}
+import type { Feature } from "../../types/Feature";
 
 interface AuthSidePanelProps {
   title: string;

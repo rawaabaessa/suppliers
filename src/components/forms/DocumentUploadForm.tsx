@@ -1,3 +1,4 @@
+import { registrationSteps } from "../../data/registrationSteps";
 import Button from "../../ui/Button";
 import ProgressBar from "../../ui/ProgressBar";
 import FormContainer from "../auth/FormContainer";
@@ -8,7 +9,7 @@ const DocumentUploadForm = () => {
   return (
     <FormContainer>
       <SuppliersHeader />
-      <ProgressBar />
+      <ProgressBar steps={registrationSteps} currentStep={2} />
       <form>
         <div className="flex flex-col gap-4">
           <UploadBtn title="Personal identity" />

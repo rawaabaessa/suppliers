@@ -1,3 +1,4 @@
+import { registrationSteps } from "../../data/registrationSteps";
 import Button from "../../ui/Button";
 import Input from "../../ui/Input";
 import ProgressBar from "../../ui/ProgressBar";
@@ -10,8 +11,7 @@ const BusinessInfoForm = () => {
   return (
     <FormContainer>
       <SuppliersHeader />
-      {/* <Stepper currentStep={2} /> */}
-      <ProgressBar />
+      <ProgressBar steps={registrationSteps} currentStep={1} />
 
       <form>
         <Input label="Name" placeholder="Enter your business name" />

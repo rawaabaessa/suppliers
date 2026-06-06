@@ -1,7 +1,7 @@
-import React from "react";
+import BankDetailsForm from "../../../components/forms/BankDetailsForm";
 
 const BankDetails = () => {
-  return <div></div>;
+  return <BankDetailsForm />;
 };
 
 export default BankDetails;

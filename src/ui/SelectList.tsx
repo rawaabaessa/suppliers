@@ -1,11 +1,28 @@
 import Select from "react-select";
+import type { Props } from "react-select";
 import Label from "./Label";
+import type { SelectOption } from "../types/SelectOption";
 
-const SelectList = ({ option, title }: { option: string[]; title: string }) => {
+interface SelectListProps extends Props<SelectOption, false> {
+  title: string;
+}
+
+const SelectList = ({ title, ...props }: SelectListProps) => {
   return (
     <div>
       <Label title={title} />
-      <Select options={option} />
+      <Select
+        {...props}
+        styles={{
+          control: (base) => ({
+            ...base,
+            minHeight: "48px",
+            borderRadius: "12px",
+            borderColor: "#dadfe3",
+            boxShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+          }),
+        }}
+      />
     </div>
   );
 };

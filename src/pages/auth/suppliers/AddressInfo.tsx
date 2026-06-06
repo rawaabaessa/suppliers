@@ -1,7 +1,8 @@
 import React from "react";
+import AddressInfoForm from "../../../components/forms/AddressInfoForm";
 
 const AddressInfo = () => {
-  return <div></div>;
+  return <AddressInfoForm />;
 };
 
 export default AddressInfo;

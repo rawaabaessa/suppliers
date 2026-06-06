@@ -1,5 +1,6 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import Label from "./Label";
 
 interface InputProps {
   label: string;
@@ -13,7 +14,7 @@ const Input = ({ label, placeholder, isPassword }: InputProps) => {
 
   return (
     <div className="flex flex-col mb-4">
-      <label className="block text-gray-green mb-2">{label}</label>
+      <Label title={label} />
       <div className="relative">
         <input
           type={isPassword ? (showPassword ? "text" : "password") : "text"}

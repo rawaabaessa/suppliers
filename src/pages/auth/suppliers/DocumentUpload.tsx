@@ -1,7 +1,7 @@
-import React from "react";
+import DocumentUploadForm from "../../../components/forms/DocumentUploadForm";
 
 const DocumentUpload = () => {
-  return <div></div>;
+  return <DocumentUploadForm />;
 };
 
 export default DocumentUpload;

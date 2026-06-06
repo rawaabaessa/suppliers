@@ -6,6 +6,7 @@
   --color-gray-green: #475248;
   --color-white-border: #dadfe3;
   --color-green-white: #fafaf8;
+  --color-light-black: #2b2b2b;
 }
 
 @layer utilities {

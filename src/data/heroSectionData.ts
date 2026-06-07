@@ -19,3 +19,22 @@ export const heroData = [
     img: fresh,
   },
 ];
+
+export const heroStatics = [
+  {
+    count: "500+",
+    title: "Verified Suppliers",
+  },
+  {
+    count: "1200+",
+    title: "Client Restaurants",
+  },
+  {
+    count: "15K+",
+    title: "Order Delivered",
+  },
+  {
+    count: "98%+",
+    title: "On-Time Delivery",
+  },
+];

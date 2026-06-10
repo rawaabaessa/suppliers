@@ -1,6 +1,8 @@
-import { MapPin, Star } from "lucide-react";
 import type { Product } from "../types/Product";
 import farmLogo from "../assets/farmlogo.svg";
+import RatingAndReviews from "./RatingAndReviews";
+import Location from "./Location";
+import { ShoppingCart } from "lucide-react";
 
 const ItemCard = ({
   name,
@@ -30,11 +32,11 @@ const ItemCard = ({
           </div>
         )}
       </div>
-      <div className="px-6 py-3">
-        <h4 className="text-light-green font-semibold text-base md:text-xl mb-2">
+      <div className="px-6 py-3 flex flex-col gap-3">
+        <h4 className="text-light-green font-semibold text-base md:text-xl">
           {name}
         </h4>
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           <div className="w-5 h-5 rounded-full bg-amber-200">
             <img src={farmLogo} alt="k" />
           </div>
@@ -42,32 +44,25 @@ const ItemCard = ({
             <span className="text-light-green text-xs md:text-base">
               {farmName}
             </span>
-            <div className="flex items-center gap-1 text-gray-green">
-              <MapPin size={12} />
-              <span className="capitalize text-xs md:text-sm font-semibold">
-                {location}
-              </span>
-            </div>
-            <div className="flex items-center gap-1">
-              <span className="text-xxs md:text-sm text-gray-green/80">
-                {rating}.0
-              </span>
-              <Star className="text-amber-300" size={15} fill="currentColor" />
-              <span className="text-xxs md:text-sm text-gray-green/80">
-                ({reviewsCount})
-              </span>
-            </div>
+            <Location opacity={100} title={location} />
+            <RatingAndReviews rating={rating} reviewsCount={reviewsCount} />
           </div>
         </div>
-        <div>
+        <div className="mt-2 flex items-center justify-between">
           <div>
-            <p className="font-semibold text-xl md:text-2.5xl inline">
+            <p className="font-semibold text-xl md:text-26 inline">
               {formatPrice(price)}
             </p>
             <span className="text-xxs md:text-sm text-gray-green/80 ml-1">
               ({unit})
             </span>
           </div>
+          <button
+            aria-label="btn"
+            className="w-10 h-10 rounded-full green-shadow flex items-center justify-center"
+          >
+            <ShoppingCart size={20} className="text-primary" />
+          </button>
         </div>
       </div>
     </div>

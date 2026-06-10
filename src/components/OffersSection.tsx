@@ -16,17 +16,12 @@ const OffersSection = () => {
       <Container>
         <div className="flex items-center justify-between mb-5">
           <Heading>Todays Offers</Heading>
-          {/* <Button variant="flat">
-            <p className="flex items-center text-xs md:text-2xl">
-              View all <ChevronRight className="text-xs md:text-2xl" />
-            </p>
-          </Button> */}
         </div>
         <div className="relative">
           <button
             onClick={() => swiper.slideNext()}
             aria-label="btn"
-            className="next-btn absolute -right-4 top-1/2 -translate-y-1/2 flex items-center justify-center bg-next-bg text-primary font-bold text-lg w-10 h-10 rounded-full cursor-pointer z-20"
+            className="next-btn absolute -right-4 top-1/2 -translate-y-1/2 flex items-center justify-center bg-green-50 text-primary font-bold text-lg w-10 h-10 rounded-full cursor-pointer z-20"
           >
             <ChevronRight className="ml-0.5" />
           </button>

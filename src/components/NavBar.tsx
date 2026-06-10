@@ -1,28 +1,48 @@
 import Container from "../ui/Container";
 import logo from "../assets/supplier.svg";
-import { Menu, Search, ShoppingCart } from "lucide-react";
+import { ChevronDown, Menu, Search, ShoppingCart } from "lucide-react";
 import SearchBar from "./SearchBar";
-import SelectList from "../ui/SelectList";
 import { locations } from "../data/locationData";
 
 const NavBar = () => {
-  const cityOptions = Object.keys(locations).map((city) => ({
-    value: city,
-    label: city,
-  }));
+  const cityOptions = Object.keys(locations);
+
   return (
-    <div>
+    <header className="bg-green-white">
       <Container>
-        <div className="flex items-center justify-between gap-0 md:gap-12">
-          <img src={logo} alt="logo" />
-          <div className="hidden md:flex flex-1 items-center justify-between">
+        <div className="flex h-12 items-center justify-between gap-4 md:h-14">
+          <img src={logo} alt="Supplier" className="w-24 md:w-26" />
+
+          <div className="hidden flex-1 items-center justify-center gap-8 md:flex lg:gap-12">
             <SearchBar />
-            <div className="flex items-center gap-10">
-              <button className="text-primary text-xl">sign in \ up</button>
-              <SelectList options={cityOptions} />
-              <ShoppingCart className="text-primary" size={40} />
+
+            <div className="flex items-center gap-7 lg:gap-9">
+              <button className="flex items-center gap-1 text-sm font-medium text-primary">
+                sign in \ up
+                <ChevronDown size={15} />
+              </button>
+
+              <select
+                aria-label="City"
+                defaultValue=""
+                className="h-7 rounded border border-white-border bg-white px-2 text-xs text-gray-green shadow-sm outline-none"
+              >
+                <option value="" disabled>
+                  City
+                </option>
+                {cityOptions.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+
+              <button aria-label="Cart" className="text-primary">
+                <ShoppingCart size={26} strokeWidth={2.4} />
+              </button>
             </div>
           </div>
+
           <div className="flex md:hidden">
             <div className="flex items-center gap-3">
               <button
@@ -38,7 +58,7 @@ const NavBar = () => {
           </div>
         </div>
       </Container>
-    </div>
+    </header>
   );
 };
 

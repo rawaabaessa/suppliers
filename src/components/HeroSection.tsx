@@ -37,7 +37,7 @@ const HeroSection = () => {
                     <div className="w-12 h-12 flex items-center justify-center">
                       <img src={item.img} alt="feature" />
                     </div>
-                    <h4 className="mt-3 font-semibold text-primary">
+                    <h4 className="mt-3 font-semibold text-primary text-center">
                       {item.title}
                     </h4>
                     <p className="text-sm text-primary text-center">

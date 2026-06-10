@@ -18,7 +18,7 @@ const Swipper = ({ data, breakpoints, renderItem }: SwipperProps<T>) => {
       <button
         onClick={() => swiper.slideNext()}
         aria-label="btn"
-        className="next-btn absolute -right-4 top-1/2 -translate-y-1/2 flex items-center justify-center bg-next-bg text-primary font-bold text-lg w-10 h-10 rounded-full cursor-pointer z-20"
+        className="next-btn absolute -right-4 top-1/2 -translate-y-1/2 flex items-center justify-center bg-green-50 text-primary font-bold text-lg w-10 h-10 rounded-full cursor-pointer z-20"
       >
         <ChevronRight className="ml-0.5" />
       </button>

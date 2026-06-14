@@ -4,6 +4,7 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   type?: "button" | "submit" | "reset";
   fullWidth?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
@@ -19,6 +20,7 @@ const Button = ({
   size = "md",
   type = "button",
   fullWidth = false,
+  disabled = false,
   onClick,
 }: ButtonProps) => {
   const variants = {
@@ -32,6 +34,7 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
+      disabled={disabled}
       className={`
         rounded-full
         text-base

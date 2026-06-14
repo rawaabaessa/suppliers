@@ -10,7 +10,7 @@ interface InputProps {
 
 const Input = ({ label, placeholder, isPassword, ...props }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
 
   return (
     <div className="flex flex-col mb-4">
@@ -20,8 +20,8 @@ const Input = ({ label, placeholder, isPassword, ...props }: InputProps) => {
           type={isPassword ? (showPassword ? "text" : "password") : "text"}
           className="border-2 border-white-border input-shadow rounded-xl p-2 w-full placeholder:text-sm focus:outline-none focus:border-primary transition duration-300"
           placeholder={placeholder}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          // value={value}
+          // onChange={(e) => setValue(e.target.value)}
           {...props}
         />
         {isPassword && (

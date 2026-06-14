@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import BusinessInfo from "../pages/auth/suppliers/BusinessInfo";
@@ -6,7 +6,7 @@ import DocumentUpload from "../pages/auth/suppliers/DocumentUpload";
 import AddressInfo from "../pages/auth/suppliers/AddressInfo";
 import BankDetails from "../pages/auth/suppliers/BankDetails";
 import SupplierRegistrationLayout from "../layouts/SupplierRegistrationLayout";
-import Home from "../pages/home";
+import Home from "../pages/Home";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -16,15 +16,23 @@ export const router = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: <Signup />,
+    children: [
+      {
+        index: true,
+        element: <Signup />,
+      },
+    ],
   },
   {
-    path: "/supplier/signup",
+    path: "/signup/supplier",
     element: <SupplierRegistrationLayout />,
     children: [
       {
-        path: "step-1",
         index: true,
+        element: <Navigate to="step-1" replace />,
+      },
+      {
+        path: "step-1",
         element: <BusinessInfo />,
       },
       {

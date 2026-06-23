@@ -9,6 +9,11 @@ export const signupSchema = z.object({
   }),
 });
 
+export const loginSchema = z.object({
+  email: z.email("البريد الإلكتروني غير صحيح"),
+  password: z.string().min(8, "كلمة المرور لازم تكون 8 أحرف على الأقل"),
+});
+
 export const signupSupplierSchema = z.object({
   farmName: z.string().min(3, "الاسم لازم يكون 3 أحرف على الأقل"),
   email: z.email("البريد الإلكتروني غير صحيح"),
@@ -20,3 +25,4 @@ export const signupSupplierSchema = z.object({
 });
 
 export type SignupFormData = z.infer<typeof signupSchema>;
+export type LoginFormData = z.infer<typeof loginSchema>;

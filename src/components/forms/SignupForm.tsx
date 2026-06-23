@@ -3,13 +3,26 @@ import Input from "../../ui/Input";
 import Button from "../../ui/Button";
 import SocialLogin from "../auth/SocialLogin";
 import TermsAndPolicy from "../auth/TermsAndPolicy";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema, type SignupFormData } from "../../schema";
 import ErrorMessage from "../ErrorMessage";
+import { useAuth } from "../../contexts/useAuth";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const SignupForm = () => {
+  const [serverError, setServerError] = useState("");
+  const navigate = useNavigate();
+  const { signup, isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
   const {
     register,
     handleSubmit,
@@ -19,8 +32,21 @@ const SignupForm = () => {
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<SignupFormData> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<SignupFormData> = async (data) => {
+    try {
+      const user = await signup({
+        email: data.email,
+        name: data.name,
+        password: data.password,
+      });
+      if (user?.role.name === "resturant") {
+        navigate("/");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setServerError(error.response?.data?.message ?? "Something went wrong");
+      }
+    }
   };
 
   return (
@@ -56,6 +82,7 @@ const SignupForm = () => {
         )}
         <TermsAndPolicy {...register("terms")} />
         {errors.terms && <ErrorMessage message={`${errors.terms?.message}`} />}
+        {serverError && <ErrorMessage message={serverError} />}
         <div className="my-5">
           <Button
             variant="filled"
@@ -63,7 +90,14 @@ const SignupForm = () => {
             disabled={isSubmitting}
             fullWidth
           >
-            {isSubmitting ? "Creating..." : "Create Account"}
+            {isSubmitting ? (
+              <div className="flex items-center justify-center gap-2">
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                <span>Creating</span>
+              </div>
+            ) : (
+              "Create account"
+            )}
           </Button>
         </div>
       </form>

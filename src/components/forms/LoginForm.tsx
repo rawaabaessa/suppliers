@@ -1,60 +1,104 @@
-// import logo from "../assets/Supplier.svg";
 import Button from "../../ui/Button";
 import Input from "../../ui/Input";
 import AuthHeader from "../auth/AuthHeader";
 import RemmberMe from "../auth/RemmberMe";
 import SocialLogin from "../auth/SocialLogin";
-// import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import type { LoginFormData } from "../../schema";
+import ErrorMessage from "../ErrorMessage";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "../../schema";
+import type { LoginFormData } from "../../schema";
+import { useAuth } from "../../contexts/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const LoginForm = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm<LoginFormData>({
-  //   resolver: zodResolver(loginSchema),
-  // });
+  const [serverError, setServerError] = useState("");
+  const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
 
-  // const onSubmit = (data: LoginFormData) => {
-  //   console.log("LOGIN DATA:", data);
-  // };
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    mode: "onChange",
+  });
+
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
+    try {
+      const user = await login({
+        email: data.email,
+        password: data.password,
+      });
+      if (user?.role.name === "restaurant") {
+        navigate("/");
+      } else if (user?.role.name === "farmer") {
+        navigate("/");
+      } else if (user?.role.name === "admin") {
+        navigate("/");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setServerError(error.response?.data?.message ?? "Something went wrong");
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col gap-5">
       <AuthHeader title="sign in">
         Don't have an account ?{" "}
-        <a href="#" className="underline">
+        <Link to="/signup" className="underline">
           Create now
-        </a>
+        </Link>
       </AuthHeader>
 
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           label="Email"
           placeholder="Enter your email"
-          // {...register("email")}
+          {...register("email")}
         />
-        {/* {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email.message}</p>
-        )} */}
+        {errors.email && <ErrorMessage message={`${errors.email?.message}`} />}
         <Input
           label="Password"
           placeholder="Enter your password"
           isPassword
-          // {...register("password")}
+          {...register("password")}
         />
-        {/* {errors.password && (
-          <p className="text-red-500 text-sm">{errors.password.message}</p>
-        )} */}
+        {errors.password && (
+          <ErrorMessage message={`${errors.password?.message}`} />
+        )}
+
+        <RemmberMe />
+        {serverError && <ErrorMessage message={serverError} />}
+        <div className="my-5">
+          <Button
+            variant="filled"
+            fullWidth
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <div className="flex items-center justify-center gap-2">
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                <span>Signing in</span>
+              </div>
+            ) : (
+              "Sign in"
+            )}
+          </Button>
+        </div>
       </form>
-      <RemmberMe />
-      <div className="my-5">
-        <Button variant="filled" fullWidth>
-          Sign In
-        </Button>
-      </div>
       <SocialLogin />
     </div>
   );

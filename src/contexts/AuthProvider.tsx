@@ -27,7 +27,6 @@ const getStoredAuth = (): Pick<AuthContextValue, "user" | "token"> => {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [auth, setAuth] = useState(() => getStoredAuth());
-  // const navigate = useNavigate();
 
   const setAuthenticatedUser = useCallback((user: User, token: string) => {
     const nextAuth = { user, token };

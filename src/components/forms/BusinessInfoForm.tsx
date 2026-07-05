@@ -14,6 +14,8 @@ import {
   FarmerBusinessInfoSchema,
   type FarmerBusinessInfoFormData,
 } from "../../schema";
+import StepGuard from "../auth/suppliers/StepGuard";
+import BtnSpinner from "../BtnSpinner";
 
 const BusinessInfoForm = () => {
   const navigate = useNavigate();
@@ -47,67 +49,68 @@ const BusinessInfoForm = () => {
   };
 
   return (
-    <FormContainer>
-      <SuppliersHeader />
-      <ProgressBar steps={registrationSteps} currentStep={1} />
+    <StepGuard requiredStep={1}>
+      <FormContainer>
+        <SuppliersHeader />
+        <ProgressBar steps={registrationSteps} currentStep={1} />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="Name"
-          placeholder="Enter your business name"
-          {...register("name")}
-        />
-        {errors.name && <ErrorMessage message={`${errors.name?.message}`} />}
-        <Input
-          label="Farm Name"
-          placeholder="Enter your business name"
-          {...register("farmName")}
-        />
-        {errors.farmName && (
-          <ErrorMessage message={`${errors.farmName?.message}`} />
-        )}
-        <Input
-          label="Email"
-          placeholder="Enter your business email"
-          {...register("email")}
-        />
-        {errors.email && <ErrorMessage message={`${errors.email?.message}`} />}
-        <Input
-          label="Phone Number"
-          placeholder="Enter your phone number"
-          {...register("phone")}
-        />
-        {errors.phone && <ErrorMessage message={`${errors.phone?.message}`} />}
-        <Input
-          label="Password"
-          placeholder="Enter your password"
-          isPassword
-          {...register("password")}
-        />
-        {errors.password && (
-          <ErrorMessage message={`${errors.password?.message}`} />
-        )}
-
-        <TermsAndPolicy {...register("terms")} />
-        {errors.terms && <ErrorMessage message={`${errors.terms?.message}`} />}
-
-        <Button
-          variant="filled"
-          disabled={isSubmitting}
-          type="submit"
-          fullWidth
-        >
-          {isSubmitting ? (
-            <div className="flex items-center justify-center gap-2">
-              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-              <span>Next</span>
-            </div>
-          ) : (
-            "Next"
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            label="Name"
+            placeholder="Enter your business name"
+            {...register("name")}
+          />
+          {errors.name && <ErrorMessage message={`${errors.name?.message}`} />}
+          <Input
+            label="Farm Name"
+            placeholder="Enter your business name"
+            {...register("farmName")}
+          />
+          {errors.farmName && (
+            <ErrorMessage message={`${errors.farmName?.message}`} />
           )}
-        </Button>
-      </form>
-    </FormContainer>
+          <Input
+            label="Email"
+            placeholder="Enter your business email"
+            {...register("email")}
+          />
+          {errors.email && (
+            <ErrorMessage message={`${errors.email?.message}`} />
+          )}
+          <Input
+            label="Phone Number"
+            placeholder="Enter your phone number"
+            {...register("phone")}
+          />
+          {errors.phone && (
+            <ErrorMessage message={`${errors.phone?.message}`} />
+          )}
+          <Input
+            label="Password"
+            placeholder="Enter your password"
+            isPassword
+            {...register("password")}
+          />
+          {errors.password && (
+            <ErrorMessage message={`${errors.password?.message}`} />
+          )}
+
+          <TermsAndPolicy {...register("terms")} />
+          {errors.terms && (
+            <ErrorMessage message={`${errors.terms?.message}`} />
+          )}
+
+          <Button
+            variant="filled"
+            disabled={isSubmitting}
+            type="submit"
+            fullWidth
+          >
+            {isSubmitting ? <BtnSpinner /> : "Next"}
+          </Button>
+        </form>
+      </FormContainer>
+    </StepGuard>
   );
 };
 

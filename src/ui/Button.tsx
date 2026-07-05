@@ -41,6 +41,7 @@ const Button = ({
         transition-colors
         duration-200
         cursor-pointer
+        mt-2
         ${variants[variant]} ${fullWidth ? "w-full" : ""}  ${sizes[size]}`}
     >
       {children}

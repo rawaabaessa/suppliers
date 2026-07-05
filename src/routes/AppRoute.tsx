@@ -7,6 +7,7 @@ import AddressInfo from "../pages/auth/suppliers/AddressInfo";
 import BankDetails from "../pages/auth/suppliers/BankDetails";
 import SupplierRegistrationLayout from "../layouts/SupplierRegistrationLayout";
 import Home from "../pages/Home";
+import AccountPendingPage from "../pages/AccountPendingPage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -48,5 +49,9 @@ export const router = createBrowserRouter([
         element: <BankDetails />,
       },
     ],
+  },
+  {
+    path: "/account-pending",
+    element: <AccountPendingPage />,
   },
 ]);

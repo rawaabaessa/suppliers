@@ -40,7 +40,7 @@ const NavBar = () => {
             <div className="flex items-center gap-4 lg:gap-5">
               {!isAuthenticated && (
                 <Link
-                  to={"login"}
+                  to={"/login"}
                   className="flex items-center gap-1 text-sm font-medium text-primary"
                 >
                   sign in \ up

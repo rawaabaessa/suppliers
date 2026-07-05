@@ -1,8 +1,13 @@
 import api from "./api";
 import type { SignupData, LoginCredentials } from "../types/AuthData";
+import type { FarmerSignupData } from "../types/FarmerSignupData";
 
 export const signupRequest = (data: SignupData) => {
   return api.post("/register", data);
+};
+
+export const farmersignupRequest = (data: FarmerSignupData) => {
+  return api.post("/farmeregister", data);
 };
 
 export const loginRequest = (data: LoginCredentials) => {

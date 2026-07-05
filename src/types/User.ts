@@ -3,9 +3,15 @@ export interface Role {
   name: string;
 }
 
+export interface Farmer {
+  id: number;
+  status: "pending" | "approved" | "rejected";
+}
+
 export interface User {
   id: number;
   name: string;
   email: string;
   role: Role;
+  farmer?: Farmer | null;
 }

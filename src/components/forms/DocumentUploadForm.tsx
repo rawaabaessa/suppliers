@@ -10,6 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FarmDocumentsSchema, type FarmDocumetsFormData } from "../../schema";
 import ErrorMessage from "../ErrorMessage";
 import FileUpload from "../auth/FileUpload";
+import StepGuard from "../auth/suppliers/StepGuard";
+import BtnSpinner from "../BtnSpinner";
 
 const DocumentUploadForm = () => {
   const navigate = useNavigate();
@@ -35,57 +37,51 @@ const DocumentUploadForm = () => {
       identity_file: data.identityFile,
       license_file: data.licenseFile,
     });
-    console.log(formData);
     navigate("/signup/supplier/step-3");
   };
 
   return (
-    <FormContainer>
-      <SuppliersHeader />
-      <ProgressBar steps={registrationSteps} currentStep={2} />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-4 mb-5">
-          <FileUpload
-            label="Personal identity"
-            name="identityFile"
-            register={register}
-            setValue={setValue}
-            watch={watch}
-          />
+    <StepGuard requiredStep={2}>
+      <FormContainer>
+        <SuppliersHeader />
+        <ProgressBar steps={registrationSteps} currentStep={2} />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col gap-4 mb-5">
+            <FileUpload
+              label="Personal identity"
+              name="identityFile"
+              register={register}
+              setValue={setValue}
+              watch={watch}
+            />
 
-          {errors.identityFile && (
-            <ErrorMessage message={errors.identityFile.message as string} />
-          )}
+            {errors.identityFile && (
+              <ErrorMessage message={errors.identityFile.message as string} />
+            )}
 
-          <FileUpload
-            label="Commercial license"
-            name="licenseFile"
-            register={register}
-            setValue={setValue}
-            watch={watch}
-          />
+            <FileUpload
+              label="Commercial license"
+              name="licenseFile"
+              register={register}
+              setValue={setValue}
+              watch={watch}
+            />
 
-          {errors.licenseFile && (
-            <ErrorMessage message={errors.licenseFile.message as string} />
-          )}
-        </div>
-        <Button
-          variant="filled"
-          type="submit"
-          disabled={isSubmitting}
-          fullWidth
-        >
-          {isSubmitting ? (
-            <div className="flex items-center justify-center gap-2">
-              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-              <span>Next</span>
-            </div>
-          ) : (
-            "Next"
-          )}
-        </Button>
-      </form>
-    </FormContainer>
+            {errors.licenseFile && (
+              <ErrorMessage message={errors.licenseFile.message as string} />
+            )}
+          </div>
+          <Button
+            variant="filled"
+            type="submit"
+            disabled={isSubmitting}
+            fullWidth
+          >
+            {isSubmitting ? <BtnSpinner /> : "Next"}
+          </Button>
+        </form>
+      </FormContainer>
+    </StepGuard>
   );
 };
 

@@ -12,6 +12,7 @@ import { useAuth } from "../../contexts/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BtnSpinner from "../BtnSpinner";
 
 const LoginForm = () => {
   const [serverError, setServerError] = useState("");
@@ -39,6 +40,9 @@ const LoginForm = () => {
         email: data.email,
         password: data.password,
       });
+      if (user?.farmer?.status === "pending") {
+        navigate("/account-pending");
+      }
       if (user?.role.name === "restaurant") {
         navigate("/");
       } else if (user?.role.name === "farmer") {
@@ -88,14 +92,7 @@ const LoginForm = () => {
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? (
-              <div className="flex items-center justify-center gap-2">
-                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                <span>Signing in</span>
-              </div>
-            ) : (
-              "Sign in"
-            )}
+            {isSubmitting ? <BtnSpinner /> : "Sign in"}
           </Button>
         </div>
       </form>

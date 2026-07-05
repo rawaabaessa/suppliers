@@ -11,6 +11,7 @@ import ErrorMessage from "../ErrorMessage";
 import { useAuth } from "../../contexts/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import BtnSpinner from "../BtnSpinner";
 
 const SignupForm = () => {
   const [serverError, setServerError] = useState("");
@@ -90,14 +91,7 @@ const SignupForm = () => {
             disabled={isSubmitting}
             fullWidth
           >
-            {isSubmitting ? (
-              <div className="flex items-center justify-center gap-2">
-                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                <span>Creating</span>
-              </div>
-            ) : (
-              "Create account"
-            )}
+            {isSubmitting ? <BtnSpinner /> : "Create account"}
           </Button>
         </div>
       </form>

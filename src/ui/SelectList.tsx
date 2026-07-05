@@ -4,7 +4,7 @@ import Label from "./Label";
 import type { SelectOption } from "../types/SelectOption";
 
 interface SelectListProps extends Props<SelectOption, false> {
-  title?: string;
+  title: string;
 }
 
 const SelectList = ({ title, ...props }: SelectListProps) => {

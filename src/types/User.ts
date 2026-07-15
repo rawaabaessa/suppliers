@@ -5,6 +5,8 @@ export interface Role {
 
 export interface Farmer {
   id: number;
+  farm_name: string;
+  city: string;
   status: "pending" | "approved" | "rejected";
 }
 

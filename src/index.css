@@ -7,8 +7,18 @@
   --color-gray-green: #475248;
   --color-white-border: #dadfe3;
   --color-green-white: #fafaf8;
+  --color-white-100: #ededed;
   --color-light-black: #2b2b2b;
   --color-green-50: #b9d2cb;
+  --color-success: #37a558;
+  --color-light-success: #9fedb6;
+  --color-light-pending: #fdeebd;
+  --color-warning: #aa8f36;
+  --color-light-warning: #fdeebd;
+  --color-dangres: #841b1b;
+  --color-light-dangres: #f9aaaa;
+  --color-light-cancel: #f9aaaa;
+  --color-light-info: #9ae3d8;
   --text-xxs: 10px;
   --text-26: 26px;
   --text-16: 16px;
@@ -21,14 +31,15 @@ body {
 }
 
 @layer utilities {
-  .input-shadow {
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  }
+  .input-shadow,
   .btn-shadow {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   }
   .green-shadow {
     box-shadow: 0 4px 4px #569281;
+  }
+  .dashboard-shadow {
+    box-shadow: 0px 4px 6px #a5c5bc;
   }
   .glass-effect {
     background: transparent;

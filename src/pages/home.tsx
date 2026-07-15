@@ -11,12 +11,14 @@ const Home = () => {
   return (
     <div className="pb-20 md:pb-0">
       <NavBar />
-      <HeroSection />
-      <OffersSection />
-      <BestSellerSection />
-      <NearBySuppliers />
-      <StepsSection />
-      <JoinSupplierSection />
+      <main>
+        <HeroSection />
+        <OffersSection />
+        <BestSellerSection />
+        <NearBySuppliers />
+        <StepsSection />
+        <JoinSupplierSection />
+      </main>
       <Footer />
     </div>
   );

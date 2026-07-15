@@ -7,7 +7,12 @@ import AddressInfo from "../pages/auth/suppliers/AddressInfo";
 import BankDetails from "../pages/auth/suppliers/BankDetails";
 import SupplierRegistrationLayout from "../layouts/SupplierRegistrationLayout";
 import Home from "../pages/Home";
+import Overview from "../pages/dashboard/farmer/Overview";
 import AccountPendingPage from "../pages/AccountPendingPage";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Products from "../pages/dashboard/farmer/Products";
+import Orders from "../pages/dashboard/farmer/Orders";
+import Analytics from "../pages/dashboard/farmer/Analytics";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -21,6 +26,33 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Signup />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        path: "overview",
+        element: <Overview />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+      },
+      {
+        path: "Analytics",
+        element: <Analytics />,
       },
     ],
   },

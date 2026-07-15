@@ -4,7 +4,6 @@ import { ChevronRight } from "lucide-react";
 import OfferCard from "./OfferCard";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Navigation } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import { offersData } from "../data/offersData";
